@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="kr.ac.kumoh.ce.s20160450.lol.ui.loltem.LoltemFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_loltem" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="kr.ac.kumoh.ce.s20160450.lol.ui.champion.ChampionFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_champion" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="kr.ac.kumoh.ce.s20160450.lol.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>
