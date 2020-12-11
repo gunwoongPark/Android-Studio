@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_cinematic"
-        android:name="kr.ac.kumoh.ce.s20160450.lol.ui.notifications.NotificationsFragment"
+        android:name="kr.ac.kumoh.ce.s20160450.lol.ui.notifications.CinematicFragment"
         android:label="@string/title_cinematic"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

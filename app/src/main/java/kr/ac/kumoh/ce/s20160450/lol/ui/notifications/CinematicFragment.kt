@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kr.ac.kumoh.ce.s20160450.lol.R
 
-class NotificationsFragment : Fragment() {
+class CinematicFragment : Fragment() {
 
     private lateinit var notificationsViewModel: NotificationsViewModel
 

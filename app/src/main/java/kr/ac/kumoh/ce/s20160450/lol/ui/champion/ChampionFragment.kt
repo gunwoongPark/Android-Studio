@@ -55,10 +55,10 @@ class ChampionFragment : Fragment() {
 
     inner class ChampionAdapter: RecyclerView.Adapter<ChampionAdapter.ViewHolder>() {
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val txText1: TextView = itemView.findViewById<TextView>(R.id.text1)
+            val txText1: TextView = itemView.findViewById<TextView>(R.id.skillName)
             val txText2: TextView = itemView.findViewById<TextView>(R.id.text2)
 
-            val niImage: NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.image)
+            val niImage: NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.skillImage)
 
             init {
                 niImage.setDefaultImageResId(android.R.drawable.ic_menu_report_image)

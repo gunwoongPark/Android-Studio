@@ -16,7 +16,7 @@ class ChampionDetailActivity : AppCompatActivity() {
 
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
-        val SERVER_URL = "http://192.168.0.100:8080"
+        val SERVER_URL = "http://192.168.0.123:8080"
     }
 
     lateinit var mQueue: RequestQueue
@@ -51,7 +51,6 @@ class ChampionDetailActivity : AppCompatActivity() {
         )
 
         itemImage.setImageUrl("$SERVER_URL/champion_image/$getImage", imageLoader)
-
     }
 
     //    계속해서 QUEUE에 추가될 request들을 취소하기 위해서

@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.toolbox.NetworkImageView
 import kr.ac.kumoh.ce.s20160450.lol.R
-import kr.ac.kumoh.ce.s20160450.lol.ui.champion.ChampionDetailActivity
-import kr.ac.kumoh.ce.s20160450.lol.ui.champion.ChampionFragment
 
 class LoltemFragment : Fragment() {
 
@@ -59,10 +57,10 @@ class LoltemFragment : Fragment() {
     inner class LoltemAdapter: RecyclerView.Adapter<LoltemAdapter.ViewHolder>() {
 
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val txText1: TextView = itemView.findViewById<TextView>(R.id.text1)
+            val txText1: TextView = itemView.findViewById<TextView>(R.id.skillName)
             val txText2: TextView = itemView.findViewById<TextView>(R.id.text2)
 
-            val niImage: NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.image)
+            val niImage: NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.skillImage)
 
             init {
                 niImage.setDefaultImageResId(android.R.drawable.ic_menu_report_image)
