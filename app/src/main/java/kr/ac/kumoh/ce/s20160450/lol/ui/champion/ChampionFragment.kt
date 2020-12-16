@@ -19,6 +19,7 @@ import kr.ac.kumoh.ce.s20160450.lol.R
 class ChampionFragment : Fragment() {
 
     companion object{
+        const val ID = "id"
         const val NAME = "name"
         const val POSITION = "position"
         const val INFO = "info"
@@ -85,6 +86,7 @@ class ChampionFragment : Fragment() {
 
             holder.itemView.setOnClickListener {
                 val intent = Intent(holder.itemView?.context, ChampionDetailActivity::class.java)
+                intent.putExtra(ID, model.getChampion(position).id)
                 intent.putExtra(NAME, model.getChampion(position).name)
                 intent.putExtra(POSITION, model.getChampion(position).position)
                 intent.putExtra(INFO, model.getChampion(position).info)

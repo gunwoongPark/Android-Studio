@@ -29,7 +29,8 @@
             android:layout_marginStart="2dp"
             android:layout_marginLeft="2dp"
             android:text="testName"
-            android:textSize="18sp"
+            android:textColor="#000"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/skillKey"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +38,7 @@
             android:id="@+id/skillCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="testCost"
@@ -70,8 +72,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:textColor="#000"
             android:text="testKey"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/skillImage"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

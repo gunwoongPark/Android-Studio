@@ -18,7 +18,7 @@ import java.net.URLEncoder
 class ChampionViewModel(application: Application) : AndroidViewModel(application) {
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
-        val SERVER_URL = "http://192.168.0.123:8080"
+        val SERVER_URL = "http://192.168.0.11:8080"
     }
 
     private var mQueue: RequestQueue
@@ -82,7 +82,7 @@ class ChampionViewModel(application: Application) : AndroidViewModel(application
         for (i in 0 until items.length()){
             val item: JSONObject = items[i] as JSONObject
             val id = item.getInt("id")
-            val name = item.getString("name")
+            val name = item.getString("champ_name")
             val position = item.getString("position")
             val image = item.getString("image")
             val info = item.getString("info")
