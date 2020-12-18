@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+<!--    동영상 실행 중 화면이 꺼지지 않게-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LOL"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.loltem.LoltemDetailActivity"></activity>
+        <activity android:name=".ui.notifications.CinematicDetailActivity"
+            android:screenOrientation="landscape"
+            ></activity>
+        <activity android:name=".ui.loltem.LoltemDetailActivity" />
         <activity android:name=".ui.champion.ChampionDetailActivity" />
         <activity
             android:name=".MainActivity"

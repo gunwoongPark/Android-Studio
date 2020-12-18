@@ -1,5 +1,6 @@
 package kr.ac.kumoh.ce.s20160450.lol.ui.notifications
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.media.MediaPlayer
 import android.media.ThumbnailUtils
@@ -19,9 +20,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.toolbox.NetworkImageView
 import kr.ac.kumoh.ce.s20160450.lol.R
+import kr.ac.kumoh.ce.s20160450.lol.ui.champion.ChampionDetailActivity
+import kr.ac.kumoh.ce.s20160450.lol.ui.champion.ChampionFragment
 
 class CinematicFragment : Fragment() {
+    companion object{
+        const val TITLE = "title"
+        const val PATH = "path"
+    }
 
     private lateinit var model: CinematicViewModel
     private val mAdapter = CinematicAdapter()
@@ -54,7 +62,12 @@ class CinematicFragment : Fragment() {
         
         inner class ViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
             val title: TextView = itemView.findViewById<TextView>(R.id.title)
-            val path : VideoView = itemView.findViewById<VideoView>(R.id.videoView)
+
+            val thumbnail:NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.thumbnail)
+
+            init {
+                thumbnail.setDefaultImageResId(android.R.drawable.ic_menu_report_image)
+            }
         }
 
         override fun getItemCount(): Int {
@@ -71,9 +84,18 @@ class CinematicFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.title.text = model.getCinematic(position).title
-            holder.path.setVideoPath(model.getVideoUrl(position))
-            holder.path.setMediaController(MediaController(holder.path.context))
-            holder.path.pause()
+
+            holder.thumbnail.setImageUrl(model.getThumbnailUrl(position), model.imageLoader)
+//            holder.path.setVideoPath(model.getVideoUrl(position))
+//            holder.path.setMediaController(MediaController(holder.path.context))
+//            holder.path.pause()
+
+            holder.itemView.setOnClickListener {
+                val intent = Intent(holder.itemView?.context, CinematicDetailActivity::class.java)
+                intent.putExtra(TITLE, model.getCinematic(position).title)
+                intent.putExtra(PATH, model.getVideoUrl(position))
+                startActivity(intent)
+            }
         }
     }
 }

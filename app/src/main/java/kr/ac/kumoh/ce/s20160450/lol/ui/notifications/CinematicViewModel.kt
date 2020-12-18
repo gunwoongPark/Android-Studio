@@ -25,7 +25,7 @@ class CinematicViewModel(application:Application) : AndroidViewModel(application
 
     private var mQueue:RequestQueue
 
-    data class Cinematic(var id:Int, var path:String, var title:String)
+    data class Cinematic(var id:Int, var path:String, var title:String, var thumbnail:String)
 
     val list = MutableLiveData<ArrayList<Cinematic>>()
     private val cinematic = ArrayList<Cinematic>()
@@ -36,20 +36,23 @@ class CinematicViewModel(application:Application) : AndroidViewModel(application
         mQueue = Volley.newRequestQueue(application)
 
         imageLoader = ImageLoader(mQueue,
-            object:ImageLoader.ImageCache{
-                private val cache = LruCache<String, Bitmap>(100)
-                override fun getBitmap(url: String?): Bitmap {
-                    return cache.get(url)
-                }
-                override fun putBitmap(url: String?, bitmap: Bitmap?) {
-                    cache.put(url,bitmap)
-                }
-            })
+                object : ImageLoader.ImageCache {
+                    private val cache = LruCache<String, Bitmap>(100)
+                    override fun getBitmap(url: String): Bitmap? {
+                        return cache.get(url)
+                    }
+                    override fun putBitmap(url: String, bitmap: Bitmap) {
+                        cache.put(url, bitmap)
+                    }
+                })
 
         requestCinematic()
     }
 
-    fun getVideoUrl(i: Int):String = "$SERVER_URL/videos/" + URLEncoder.encode(cinematic[i].path, "utf-8")
+//    fun getVideoThumbnail(i:Int):String = "$SERVER_URL/cinematic_image/" + URLEncoder.encode(cinematic[i].path, "utf-8")
+    fun getThumbnailUrl(i:Int):String = "$SERVER_URL/cinematic_image/" + URLEncoder.encode(cinematic[i].thumbnail, "utf-8")
+
+    fun getVideoUrl(i: Int):String = "$SERVER_URL/cinematic_video/" + URLEncoder.encode(cinematic[i].path, "utf-8")
 
     fun getCinematic(i:Int) = cinematic[i]
 
@@ -85,8 +88,9 @@ class CinematicViewModel(application:Application) : AndroidViewModel(application
             val id = item.getInt("id")
             val path = item.getString("path")
             val title = item.getString("title")
+            val thumbnail = item.getString("thumbnail")
 
-            cinematic.add(Cinematic(id,path,title))
+            cinematic.add(Cinematic(id,path,title, thumbnail))
         }
     }
 }
