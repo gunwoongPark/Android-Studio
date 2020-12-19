@@ -18,7 +18,7 @@ import java.net.URLEncoder
 class ChampionViewModel(application: Application) : AndroidViewModel(application) {
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
-        val SERVER_URL = "http://192.168.0.100:8080"
+        val SERVER_URL = "http://172.30.1.4:8080"
     }
 
     private var mQueue: RequestQueue

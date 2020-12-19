@@ -3,4 +3,5 @@
     <string name="title_item">아이템</string>
     <string name="title_champion">챔피언</string>
     <string name="title_cinematic">시네마틱</string>
+    <string name="title_patchnote">패치노트</string>
 </resources>

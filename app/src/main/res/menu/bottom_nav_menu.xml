@@ -16,4 +16,8 @@
         android:icon="@drawable/cinematic_icon"
         android:title="@string/title_cinematic" />
 
+    <item
+        android:id="@+id/navigation_patchnote"
+        android:icon="@drawable/patchnote_icon"
+        android:title="@string/title_patchnote"/>
 </menu>

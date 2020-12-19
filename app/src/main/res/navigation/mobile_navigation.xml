@@ -22,4 +22,10 @@
         android:name="kr.ac.kumoh.ce.s20160450.lol.ui.cinematic.CinematicFragment"
         android:label="@string/title_cinematic"
         tools:layout="@layout/fragment_cinematic" />
+
+    <fragment
+        android:id="@+id/navigation_patchnote"
+        android:name="kr.ac.kumoh.ce.s20160450.lol.ui.patchnote.PatchnoteFragment"
+        android:label="@string/title_patchnote"
+        tools:layout="@layout/fragment_patchnote" />
 </navigation>
