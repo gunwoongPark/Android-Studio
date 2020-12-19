@@ -77,9 +77,6 @@ class CinematicFragment : Fragment() {
             holder.title.text = model.getCinematic(position).title
 
             holder.thumbnail.setImageUrl(model.getThumbnailUrl(position), model.imageLoader)
-//            holder.path.setVideoPath(model.getVideoUrl(position))
-//            holder.path.setMediaController(MediaController(holder.path.context))
-//            holder.path.pause()
 
             holder.itemView.setOnClickListener {
                 val intent = Intent(holder.itemView?.context, CinematicDetailActivity::class.java)

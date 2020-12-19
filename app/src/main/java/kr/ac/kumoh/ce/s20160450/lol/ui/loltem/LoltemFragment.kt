@@ -57,10 +57,10 @@ class LoltemFragment : Fragment() {
     inner class LoltemAdapter: RecyclerView.Adapter<LoltemAdapter.ViewHolder>() {
 
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val txText1: TextView = itemView.findViewById<TextView>(R.id.skillName)
-            val txText2: TextView = itemView.findViewById<TextView>(R.id.text2)
+            val txText1: TextView = itemView.findViewById<TextView>(R.id.listLoltemName)
+            val txText2: TextView = itemView.findViewById<TextView>(R.id.listLoltemGold)
 
-            val niImage: NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.skillImage)
+            val niImage: NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.listLoltemImage)
 
             init {
                 niImage.setDefaultImageResId(android.R.drawable.ic_menu_report_image)
@@ -73,7 +73,7 @@ class LoltemFragment : Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoltemAdapter.ViewHolder {
             val view = layoutInflater.inflate(
-                R.layout.item_list,
+                R.layout.item_loltem,
                 parent,
                 false)
             return ViewHolder(view)
@@ -81,7 +81,7 @@ class LoltemFragment : Fragment() {
 
         override fun onBindViewHolder(holder: LoltemAdapter.ViewHolder, position: Int) {
             holder.txText1.text = model.getLoltem(position).name
-            holder.txText2.text = model.getLoltem(position).cost.toString()
+            holder.txText2.text = model.getLoltem(position).cost.toString() + " G"
 
             holder.niImage.setImageUrl(model.getImageUrl(position), model.imageLoader)
 

@@ -11,6 +11,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.ImageLoader
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import kr.ac.kumoh.ce.s20160450.lol.ui.MySingleton
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URLEncoder
@@ -18,7 +19,7 @@ import java.net.URLEncoder
 class ChampionViewModel(application: Application) : AndroidViewModel(application) {
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
-        val SERVER_URL = "http://172.30.1.4:8080"
+        val SERVER_URL = "http://192.168.0.11:8080"
     }
 
     private var mQueue: RequestQueue
@@ -31,18 +32,8 @@ class ChampionViewModel(application: Application) : AndroidViewModel(application
     val imageLoader: ImageLoader
     init {
         list.value = champion
-        mQueue = Volley.newRequestQueue(application)
-
-        imageLoader = ImageLoader(mQueue,
-            object : ImageLoader.ImageCache {
-                private val cache = LruCache<String, Bitmap>(100)
-                override fun getBitmap(url: String): Bitmap? {
-                    return cache.get(url)
-                }
-                override fun putBitmap(url: String, bitmap: Bitmap) {
-                    cache.put(url, bitmap)
-                }
-            })
+        mQueue = MySingleton.getInstance(application).requestQueue
+        imageLoader = MySingleton.getInstance(application).imageLoader
 
         requestChampion()
     }

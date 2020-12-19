@@ -10,11 +10,6 @@ import kr.ac.kumoh.ce.s20160450.lol.R
 
 class CinematicDetailActivity : AppCompatActivity() {
 
-    companion object{
-        const val QUEUE_TAG = "VolleyRequesta"
-        val SERVER_URL = "http://172.30.1.4:8080"
-    }
-
     lateinit var  mQueue:RequestQueue
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,9 +25,5 @@ class CinematicDetailActivity : AppCompatActivity() {
         videoView.setVideoPath(path)
         videoView.setMediaController(MediaController(this))
         videoView.start()
-
-    //            holder.path.setVideoPath(model.getVideoUrl(position))
-//            holder.path.setMediaController(MediaController(holder.path.context))
-//            holder.path.pause()
     }
 }

@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_champion_detail.itemInfo
 import kotlinx.android.synthetic.main.activity_champion_detail.itemName
 import kotlinx.android.synthetic.main.activity_loltem_detail.*
 import kr.ac.kumoh.ce.s20160450.lol.R
+import kr.ac.kumoh.ce.s20160450.lol.ui.MySingleton
 import kr.ac.kumoh.ce.s20160450.lol.ui.champion.ChampionFragment
 import java.net.CookieHandler
 import java.net.CookieManager
@@ -22,7 +23,7 @@ class LoltemDetailActivity : AppCompatActivity() {
 
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
-        val SERVER_URL = "http://172.30.1.4:8080"
+        val SERVER_URL = "http://192.168.0.11:8080"
     }
 
     lateinit var mQueue: RequestQueue
@@ -44,19 +45,9 @@ class LoltemDetailActivity : AppCompatActivity() {
 
         CookieHandler.setDefault(CookieManager())
 
-        mQueue = Volley.newRequestQueue(this)
+        mQueue = MySingleton.getInstance(application).requestQueue
 
-        imageLoader = ImageLoader(mQueue,
-            object : ImageLoader.ImageCache{
-                private val cache = LruCache<String, Bitmap>(100)
-                override fun getBitmap(url: String): Bitmap? {
-                    return cache.get(url)
-                }
-                override fun putBitmap(url: String, bitmap: Bitmap) {
-                    cache.put(url,bitmap)
-                }
-            }
-        )
+        imageLoader = MySingleton.getInstance(application).imageLoader
 
         itemImage.setImageUrl("$SERVER_URL/loltem_image/$getImage", imageLoader)
 

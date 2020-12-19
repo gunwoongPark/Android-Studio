@@ -17,7 +17,7 @@ import java.net.URLEncoder
 class SkillViewModel (application: Application):AndroidViewModel(application){
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
-        val SERVER_URL = "http://172.30.1.4:8080"
+        val SERVER_URL = "http://192.168.0.11:8080"
     }
 
     private var mQueue:RequestQueue
@@ -29,19 +29,8 @@ class SkillViewModel (application: Application):AndroidViewModel(application){
     val imageLoader:ImageLoader
     init {
         list.value = skill
-        mQueue = Volley.newRequestQueue(application)
+        mQueue = MySingleton.getInstance(application).requestQueue
         imageLoader= MySingleton.getInstance(application).imageLoader
-//        imageLoader = ImageLoader(mQueue,
-//        object:ImageLoader.ImageCache{
-//            private val cache = LruCache<String, Bitmap>(100)
-//            override fun getBitmap(url: String?): Bitmap {
-//                return cache.get(url)
-//            }
-//
-//            override fun putBitmap(url: String?, bitmap: Bitmap?) {
-//                cache.put(url,bitmap)
-//            }
-//        })
     }
 
     fun getImageUrl(i: Int): String = "$SERVER_URL/skill_image/" + URLEncoder.encode(skill[i].image, "utf-8")

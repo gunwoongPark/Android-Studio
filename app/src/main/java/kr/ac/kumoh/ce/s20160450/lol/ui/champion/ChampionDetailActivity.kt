@@ -1,9 +1,7 @@
 package kr.ac.kumoh.ce.s20160450.lol.ui.champion
 
-import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.LruCache
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -15,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.ImageLoader
 import com.android.volley.toolbox.NetworkImageView
-import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_champion_detail.*
 import kr.ac.kumoh.ce.s20160450.lol.R
+import kr.ac.kumoh.ce.s20160450.lol.ui.MySingleton
 import java.net.CookieHandler
 import java.net.CookieManager
 
@@ -25,7 +23,7 @@ class ChampionDetailActivity : AppCompatActivity() {
 
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
-        val SERVER_URL = "http://172.30.1.4:8080"
+        val SERVER_URL = "http://192.168.0.11:8080"
     }
 
     lateinit var mQueue: RequestQueue
@@ -48,23 +46,11 @@ class ChampionDetailActivity : AppCompatActivity() {
 
         CookieHandler.setDefault(CookieManager())
 
-        mQueue = Volley.newRequestQueue(this)
+        mQueue = MySingleton.getInstance(application).requestQueue
 
-        imageLoader = ImageLoader(mQueue,
-            object : ImageLoader.ImageCache{
-                private val cache = LruCache<String, Bitmap>(100)
-                override fun getBitmap(url: String): Bitmap? {
-                    return cache.get(url)
-                }
-                override fun putBitmap(url: String, bitmap: Bitmap) {
-                    cache.put(url,bitmap)
-                }
-            }
-        )
+        imageLoader = MySingleton.getInstance(application).imageLoader
 
         itemImage.setImageUrl("$SERVER_URL/champion_image/$getImage", imageLoader)
-
-
 
         // 여기부터 스킬
 
@@ -85,13 +71,13 @@ class ChampionDetailActivity : AppCompatActivity() {
 
     inner class SkillAdapter:RecyclerView.Adapter<SkillAdapter.ViewHolder>(){
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-            val skillName: TextView = itemView.findViewById<TextView>(R.id.skillName)
+            val skillName: TextView = itemView.findViewById<TextView>(R.id.listChampName)
             val skillKey : TextView = itemView.findViewById<TextView>(R.id.skillKey)
             val skillCool : TextView = itemView.findViewById<TextView>(R.id.skillCool)
             val skillCost : TextView = itemView.findViewById<TextView>(R.id.skillCost)
             val skillInfo: TextView = itemView.findViewById<TextView>(R.id.skillInfo)
 
-            val skillImage: NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.skillImage)
+            val skillImage: NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.listChampImage)
 
             init {
                 skillImage.setDefaultImageResId(android.R.drawable.ic_menu_report_image)
