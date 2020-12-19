@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="?attr/actionBarSize"
-    tools:context=".ui.notifications.CinematicFragment">
+    tools:context=".ui.cinematic.CinematicFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lsResult"

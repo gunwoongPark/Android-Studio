@@ -17,7 +17,7 @@ import java.net.URLEncoder
 class SkillViewModel (application: Application):AndroidViewModel(application){
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
-        val SERVER_URL = "http://192.168.0.11:8080"
+        val SERVER_URL = "http://192.168.0.100:8080"
     }
 
     private var mQueue:RequestQueue

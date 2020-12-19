@@ -1,13 +1,11 @@
-package kr.ac.kumoh.ce.s20160450.lol.ui.notifications
+package kr.ac.kumoh.ce.s20160450.lol.ui.cinematic
 
 import android.app.Application
 import android.graphics.Bitmap
 import android.util.LruCache
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.ImageLoader
@@ -20,7 +18,7 @@ import java.net.URLEncoder
 class CinematicViewModel(application:Application) : AndroidViewModel(application) {
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
-        val SERVER_URL="http://192.168.0.11:8080"
+        val SERVER_URL="http://192.168.0.100:8080"
     }
 
     private var mQueue:RequestQueue

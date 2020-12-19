@@ -25,7 +25,7 @@ class ChampionDetailActivity : AppCompatActivity() {
 
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
-        val SERVER_URL = "http://192.168.0.11:8080"
+        val SERVER_URL = "http://192.168.0.100:8080"
     }
 
     lateinit var mQueue: RequestQueue

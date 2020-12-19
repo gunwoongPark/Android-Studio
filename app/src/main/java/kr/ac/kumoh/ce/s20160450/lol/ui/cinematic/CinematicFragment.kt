@@ -1,18 +1,11 @@
-package kr.ac.kumoh.ce.s20160450.lol.ui.notifications
+package kr.ac.kumoh.ce.s20160450.lol.ui.cinematic
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.media.MediaPlayer
-import android.media.ThumbnailUtils
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.MediaController
 import android.widget.TextView
-import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -22,8 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.toolbox.NetworkImageView
 import kr.ac.kumoh.ce.s20160450.lol.R
-import kr.ac.kumoh.ce.s20160450.lol.ui.champion.ChampionDetailActivity
-import kr.ac.kumoh.ce.s20160450.lol.ui.champion.ChampionFragment
 
 class CinematicFragment : Fragment() {
     companion object{

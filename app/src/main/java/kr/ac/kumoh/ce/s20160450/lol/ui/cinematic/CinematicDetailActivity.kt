@@ -1,8 +1,7 @@
-package kr.ac.kumoh.ce.s20160450.lol.ui.notifications
+package kr.ac.kumoh.ce.s20160450.lol.ui.cinematic
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Window
 import android.view.WindowManager
 import android.widget.MediaController
 import com.android.volley.RequestQueue
@@ -13,7 +12,7 @@ class CinematicDetailActivity : AppCompatActivity() {
 
     companion object{
         const val QUEUE_TAG = "VolleyRequesta"
-        val SERVER_URL = "http://192.168.0.11:8080"
+        val SERVER_URL = "http://192.168.0.100:8080"
     }
 
     lateinit var  mQueue:RequestQueue

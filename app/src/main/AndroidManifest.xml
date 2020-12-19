@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LOL"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.notifications.CinematicDetailActivity"
+        <activity android:name=".ui.cinematic.CinematicDetailActivity"
             android:screenOrientation="landscape"
             ></activity>
         <activity android:name=".ui.loltem.LoltemDetailActivity" />
