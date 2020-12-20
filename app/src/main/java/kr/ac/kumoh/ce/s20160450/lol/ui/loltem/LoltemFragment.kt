@@ -17,7 +17,7 @@ import com.android.volley.toolbox.NetworkImageView
 import kr.ac.kumoh.ce.s20160450.lol.R
 
 class LoltemFragment : Fragment() {
-
+    // putExtra로 넘겨줄 때, 키값 지정
     companion object{
         const val NAME = "name"
         const val COST = "cost"
@@ -35,14 +35,17 @@ class LoltemFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        // 위에서 선언한 변수에 뷰 모델을 할당
         model = ViewModelProvider(activity as AppCompatActivity).get(LoltemViewModel::class.java)
 
+        // 리스트의 데이터 변경을 감지하고 반영
         model.list.observe(viewLifecycleOwner, Observer<ArrayList<LoltemViewModel.Loltem>> {
             mAdapter.notifyDataSetChanged()
         })
 
         val root = inflater.inflate(R.layout.fragment_loltem, container, false)
 
+        // 리사이클러 뷰 설정
         val lsResult = root.findViewById<RecyclerView>(R.id.lsResult)
         lsResult.apply {
             layoutManager = LinearLayoutManager(activity)
@@ -54,37 +57,45 @@ class LoltemFragment : Fragment() {
         return root
     }
 
+    // 리사이클러 뷰의 어댑터
     inner class LoltemAdapter: RecyclerView.Adapter<LoltemAdapter.ViewHolder>() {
 
+        // 어댑터의 각 아이템에 들어갈 속성들 지정
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val txText1: TextView = itemView.findViewById<TextView>(R.id.listLoltemName)
             val txText2: TextView = itemView.findViewById<TextView>(R.id.listLoltemGold)
 
             val niImage: NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.listLoltemImage)
-
+            
+            // network이미지 뷰는 디폴트 값 지정해야함
             init {
                 niImage.setDefaultImageResId(android.R.drawable.ic_menu_report_image)
             }
         }
 
+        // 리스트에 올라가는 모든 요소들 수
         override fun getItemCount(): Int {
             return model.getSize()
         }
 
+        // 최초의 화면에 출력될 약 10~11개의 리스트 초기화
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoltemAdapter.ViewHolder {
             val view = layoutInflater.inflate(
+                    // 직접 만든 커스텀 리스트 사용
                 R.layout.item_loltem,
                 parent,
                 false)
             return ViewHolder(view)
         }
 
+        // 새로 갱신될 요소들에 대한 데이터를 바인딩
         override fun onBindViewHolder(holder: LoltemAdapter.ViewHolder, position: Int) {
             holder.txText1.text = model.getLoltem(position).name
             holder.txText2.text = model.getLoltem(position).cost.toString() + " G"
 
             holder.niImage.setImageUrl(model.getImageUrl(position), model.imageLoader)
-
+            
+            // 상세 뷰를 intent로 띄워주기 위한 클릭 이벤트와 넘겨주는 데이터들
             holder.itemView.setOnClickListener {
                 val intent = Intent(holder.itemView?.context, LoltemDetailActivity::class.java)
                 intent.putExtra(LoltemFragment.NAME, model.getLoltem(position).name)

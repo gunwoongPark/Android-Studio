@@ -14,16 +14,19 @@ class CinematicDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //        상태바 없애기
+        // 상태바 없애기
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_cinematic_detail)
 
 
-
+        // 동영상 경로 받아오기
         var path = intent.getStringExtra(CinematicFragment.PATH)
 
+        // videoView에 경로로 적용
         videoView.setVideoPath(path)
+        // 일시정지, 넘기기 등 가능한 컨트롤 바
         videoView.setMediaController(MediaController(this))
+        // 재생
         videoView.start()
     }
 }

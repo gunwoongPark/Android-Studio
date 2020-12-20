@@ -16,11 +16,6 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        //val appBarConfiguration = AppBarConfiguration(setOf(
-        //        R.id.navigation_loltem, R.id.navigation_champion, R.id.navigation_cinematic))
-        //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 }

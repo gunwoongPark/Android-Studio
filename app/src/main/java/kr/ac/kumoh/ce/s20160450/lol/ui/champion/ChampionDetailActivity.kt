@@ -20,7 +20,7 @@ import java.net.CookieHandler
 import java.net.CookieManager
 
 class ChampionDetailActivity : AppCompatActivity() {
-
+    // QUEUE 태그와 서버 URL 지정
     companion object{
         const val QUEUE_TAG = "VolleyRequest"
         val SERVER_URL = "http://192.168.0.11:8080"
@@ -36,24 +36,28 @@ class ChampionDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_champion_detail)
 
-        title = intent.getStringExtra(ChampionFragment.NAME)
-
+        // xml 파일의 아이디로 불러온 속성에 인텐트로 받은 정보를 저장 및 적용
         itemName.text = intent.getStringExtra(ChampionFragment.NAME)
         itemCost.text = intent.getStringExtra(ChampionFragment.POSITION)
         itemInfo.text = intent.getStringExtra(ChampionFragment.INFO)
 
+        // 이미지 경로 문자열
         val getImage = intent.getStringExtra(ChampionFragment.IMAGE)
 
+        // 쿠키 핸들러
         CookieHandler.setDefault(CookieManager())
 
         mQueue = MySingleton.getInstance(application).requestQueue
 
         imageLoader = MySingleton.getInstance(application).imageLoader
 
+        // 서버로부터 받은 이미지 경로 문자열을 이용해 아이템 이미지 설정
         itemImage.setImageUrl("$SERVER_URL/champion_image/$getImage", imageLoader)
 
         // 여기부터 스킬
+        // 여기부터 스킬
 
+        // 스킬을 보여줄 리사이클러 뷰 설정
         skillList.apply {
             layoutManager = LinearLayoutManager(applicationContext)
             setHasFixedSize(true)
@@ -61,7 +65,9 @@ class ChampionDetailActivity : AppCompatActivity() {
             adapter = mAdapter
         }
 
+        // 뷰 모델을 SkillViewModel로 설정
         model = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(SkillViewModel::class.java)
+        // 리스트의 변경을 감지하고 반영
         model.list.observe(this, Observer<ArrayList<SkillViewModel.Skill>>{
             mAdapter.notifyDataSetChanged()
         })
@@ -69,7 +75,10 @@ class ChampionDetailActivity : AppCompatActivity() {
 
     }
 
+    // 리사이클러 뷰의 어댑터
     inner class SkillAdapter:RecyclerView.Adapter<SkillAdapter.ViewHolder>(){
+
+        // 어댑터의 각 아이템에 들어갈 속성들 지정
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
             val skillName: TextView = itemView.findViewById<TextView>(R.id.listChampName)
             val skillKey : TextView = itemView.findViewById<TextView>(R.id.skillKey)
@@ -79,15 +88,18 @@ class ChampionDetailActivity : AppCompatActivity() {
 
             val skillImage: NetworkImageView = itemView.findViewById<NetworkImageView>(R.id.listChampImage)
 
+            // network이미지 뷰는 디폴트 값 지정해야함
             init {
                 skillImage.setDefaultImageResId(android.R.drawable.ic_menu_report_image)
             }
         }
 
+        // 리스트에 올라가는 모든 요소들 수
         override fun getItemCount(): Int {
             return model.getSize()
         }
 
+        // 최초의 화면에 출력될 약 2개의 리스트 초기화
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkillAdapter.ViewHolder {
             val view = layoutInflater.inflate(
                     R.layout.item_skill,
@@ -96,6 +108,7 @@ class ChampionDetailActivity : AppCompatActivity() {
             return ViewHolder(view)
         }
 
+        // 새로 갱신될 요소들에 대한 데이터를 바인딩
         override fun onBindViewHolder(holder: SkillAdapter.ViewHolder, position: Int) {
             holder.skillName.text = model.getSkill(position).name
             holder.skillKey.text = model.getSkill(position).skill_key

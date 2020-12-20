@@ -19,6 +19,7 @@ class PatchnoteFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_patchnote, container, false)
         val webView = root.findViewById<WebView>(R.id.webView)
 
+        // 웹 뷰에 대한 적용
         webView.apply {
             settings.javaScriptEnabled = true
             settings.blockNetworkImage = false
